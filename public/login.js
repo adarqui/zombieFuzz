@@ -13,14 +13,16 @@ module.exports = function(state,js,cb) {
                                 if(k == 'op' || k == 'button') continue;
                                 state.browser.fill(k,v)
                         }
-                        if(js.button != undefined) {
+                        if(js.button) {
                                 state.browser.clickLink(js.button, function() {
+//                                        console.log(state.browser.html())
                                         return cb()
                                 })
+                        } else {
+                                return cb()
                         }
                 } catch(err) {
-                        // fall into return cb
+                        return cb()
                 }
-                return cb()
         })
 }
