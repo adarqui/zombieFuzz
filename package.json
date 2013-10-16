@@ -26,7 +26,8 @@
 	"zombie" : "*",
 	"assert" : "*",
 	"winston" : "*",
-	"underscore" : "*"
+	"underscore" : "*",
+	"jquery" : "*"
   },
   "license": "MIT",
   "engines": {

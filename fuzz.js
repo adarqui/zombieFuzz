@@ -8,8 +8,14 @@ var 	zom = require('zombie'),
 		redis = require('redis'),
 		async = require('async'),
 		winston = require('winston'),
-		fs = require('fs'),
-		_ = require('underscore');
+		fs = require('fs');
+
+
+_ = require('underscore');
+$$ = require('jquery');
+
+
+
 
 
 var c = {
