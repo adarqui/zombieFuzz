@@ -1,36 +1,39 @@
 {
-  "name": "zombieFuzz",
-  "preferGlobal": false,
-  "version": "0.0.1",
-  "author": "adarqui",
-  "description": "zombie fuzz tester thingy",
-  "contributors": [
-    {
-      "name": "andrew darqui",
-      "email": "andrew.darqui@gmail.com"
+    "name": "zombieFuzz",
+    "preferGlobal": false,
+    "version": "0.0.1",
+    "author": "adarqui",
+    "description": "zombie fuzz tester thingy",
+    "contributors": [
+        {
+            "name": "andrew darqui",
+            "email": "andrew.darqui@gmail.com"
+        }
+    ],
+    "keywords": [
+        "cli",
+        "http",
+        "json",
+        "fuzz",
+        "zombie",
+        "stress"
+    ],
+    "dependencies" : {
+        "underscore" : "*",
+        "hiredis" : "*",
+        "redis" : "*",
+        "async" : "*",
+        "zombie" : "*",
+        "assert" : "*",
+        "winston" : "*",
+        "underscore" : "*",
+        "jquery" : "*",
+        "nconf" : "*",
+        "connect" : "*",
+        "express" : "*"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=0.10"
     }
-  ],
-  "keywords": [
-    "cli",
-    "http",
-    "json",
-	"fuzz",
-	"zombie",
-	"stress"
-  ],
-  "dependencies" : {
-    "underscore" : "*",
-	"hiredis" : "*",
-	"redis" : "*",
-	"async" : "*",
-	"zombie" : "*",
-	"assert" : "*",
-	"winston" : "*",
-	"underscore" : "*",
-	"jquery" : "*"
-  },
-  "license": "MIT",
-  "engines": {
-    "node": ">=0.10"
-  }
 }
