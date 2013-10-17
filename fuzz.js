@@ -8,6 +8,8 @@ var 	zom = require('zombie'),
 		redis = require('redis'),
 		async = require('async'),
 		winston = require('winston'),
+		nconf = require('nconf'),
+		express = require('express'),
 		fs = require('fs');
 
 
@@ -28,6 +30,8 @@ var c = {
 	opts: {
 	},
 	ops : {
+	},
+	express : {
 	},
 }
 
@@ -139,6 +143,35 @@ var init = {
 			colors : config.colors
 		})
 	},
+	nconf : function() {
+		nconf.argv().env()/*.file({ file: "./config.js" });*/
+	},
+	express_routes : function() {
+		c.express.app.get('/configure/:name/:tag', function(req,res,next) {
+			var name = req.param('name');
+			var tag = req.param('tag');
+
+			console.log("name:",name,"tag:",tag);
+			res.json({ status : "Thanks." });
+		});
+	},
+	express : function() {
+
+		if(!nconf.get('port')) {
+			winston.info('Not starting the express server. To start, use --port=<port>');
+			return;
+		}
+
+		c.express.app = express();
+		c.express.app.use(express.logger());
+		c.express.app.use(express.cookieParser());
+		c.express.app.use(express.bodyParser());
+		c.express.app.use(express.favicon());
+		c.express.app.use(express.session({ secret : "zombierox" }));
+		c.express.app.listen(nconf.get('port'));
+
+		init.express_routes()
+	},
 	everything : function() {
 		/* fix cert issue */
 		https.globalAgent.options.secureProtocol = 'SSLv3_method';
@@ -146,6 +179,10 @@ var init = {
 
 		init.winston()
 
+		winston.info('Initializing nconf');
+		init.nconf();
+		winston.info('Initializing express');
+		init.express();
 		winston.info('Initializing zombieFuzz')
 		winston.info('Initializing public modules')
 		init.load.public()
