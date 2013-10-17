@@ -33,6 +33,11 @@ var c = {
 	},
 	express : {
 	},
+	http : {
+		port : 80,
+	},
+	socks : {
+	},
 }
 
 
@@ -152,7 +157,16 @@ var init = {
 			var tag = req.param('tag');
 
 			console.log("name:",name,"tag:",tag);
+			req.session.zombie = {
+				name : name,
+				tag : tag,
+				date : new Date().toString(),
+			};
+
 			res.json({ status : "Thanks." });
+		});
+		c.express.app.get('/configure', function(req,res,next) {
+			return res.json(req.session);
 		});
 	},
 	express : function() {
